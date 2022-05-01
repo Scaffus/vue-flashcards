@@ -1,12 +1,9 @@
 <template>
-  <nav>
-    <ul>
-      <div class="auth" v-if="!isAuthenticated">
-        <li>Sign In</li>
-        <li>Sign Up</li>
-      </div>
-    </ul>
-  </nav>
+  <ul>
+    <li v-if="!isAuthenticated">
+      <button @click="$emit('toggleShowAuthForm')">Login</button>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -17,24 +14,3 @@ export default {
   },
 };
 </script>
-
-<style lang="sass" scoped>
-@use '@/scss/_colors.scss'
-
-*
-  background-color: colors.$bg-darker
-  color: colors.$fg-prim
-
-  nav
-    position: fixed
-    width: 100%
-    text-align: center
-    padding: 14px 16px
-    ul
-      li
-        display: inline
-        list-style-type: none
-      .auth
-        float: right
-        margin-right: 1em
-</style>

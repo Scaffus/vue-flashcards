@@ -1,9 +1,19 @@
 <template>
-  <Header :isAuthenticated="isAuthenticated" />
+  <div class="">
+    <Header
+      @toggle-show-auth-form="toggleShowAuthForm()"
+      :isAuthenticated="isAuthenticated"
+    />
+    <div class="container">
+      <AddCard @add-card="addCard" />
+      <Cards :cards="cards" />
+    </div>
 
-  <AddCard @add-card="addCard" />
-
-  <Cards :cards="cards"/>
+    <Authenticate
+      v-show="showAuthForm"
+      @toggle-show-auth-form="toggleShowAuthForm"
+    />
+  </div>
 
   <!-- <div class="add-card">
     <input type="text" name="question">
@@ -20,46 +30,52 @@
 import Header from "@/components/Header.vue";
 import AddCard from "@/components/AddCard.vue";
 import Cards from "@/components/Cards.vue";
+import Authenticate from "@/components/Authenticate.vue";
 
 export default {
   name: "App",
+
   components: {
     Header,
     AddCard,
+    Authenticate,
     Cards,
   },
+
   data() {
     return {
+      showAuthForm: true,
       isAuthenticated: false,
       cards: [],
     };
   },
 
-  created: {
-    loadCards() {
-      this.cards = localStorage.getItem("cards");
-    },
-  },
-
   methods: {
+    toggleShowAuthForm() {
+      this.showAuthForm = !this.showAuthForm;
+    },
+
     addCard(card) {
       this.cards = localStorage.getItem("cards");
+      if (!this.cards) this.cards = [];
       this.cards.push(card);
       localStorage.setItem("cards", this.cards);
+    },
+
+    closeAuthForm() {
+      this.showAuthForm = false;
     },
   },
 };
 </script>
 
 <style lang="sass">
-@use '@/scss/_fonts.scss'
 @use '@/scss/_colors.scss'
+@use '@/scss/_fonts.scss'
+@use '@/scss/_utils.scss'
 
 *
-  font-family: fonts.$family-prim
-  margin: 0
-  padding: 0
-
-  body
-    background-color: colors.$bg-prim
+  @extend %font-bold
+  background: colors.$bg-dark
+  color: colors.$fg-light
 </style>

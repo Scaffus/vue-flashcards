@@ -1,14 +1,13 @@
 <template>
-    <div class="card">
-
-    </div>
+  <!-- <div class="card"></div> -->
+  <p></p>
 </template>
 
 <script>
 export default {
-    name: 'CardsComponent',
-    props: {
-        cards: Array
-    }
-}
+  name: "CardsComponent",
+  props: {
+    cards: Array,
+  },
+};
 </script>

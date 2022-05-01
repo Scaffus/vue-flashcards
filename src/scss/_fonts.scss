@@ -1,4 +1,29 @@
-@use './_colors.scss';
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400&family=Noto+Sans:wght@200;300&display=swap');
 
-$family-prim: 'Noto Sans', sans-serif;
+$font-size: 1em;
+$font: 'JetBrains Mono', monospace;
+
+@mixin font($weight, $color) {
+    font-family: $font;
+    font-weight: $weight;
+}
+
+%font-thin {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 100;
+}
+
+%font-normal {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 200;
+}
+
+%font-bold {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 300;
+}
+
+%font-bolder {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+}
