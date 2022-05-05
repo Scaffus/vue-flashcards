@@ -1,19 +1,35 @@
 <template>
-  <div class="">
-    <Header
-      @toggle-show-auth-form="toggleShowAuthForm()"
-      :isAuthenticated="isAuthenticated"
-    />
-    <div class="container">
-      <AddCard @add-card="addCard" />
-      <Cards :cards="cards" />
-    </div>
-
-    <Authenticate
-      v-show="showAuthForm"
-      @toggle-show-auth-form="toggleShowAuthForm"
+  <Header
+    @toggle-show-auth-form="toggleShowAuthForm()"
+    @logout-user="logoutUser()"
+    :isAuthenticated="isAuthenticated"
+  />
+  <div class="popup center">
+    <Popup
+      class="fadein center"
+      v-if="showPopup"
+      :title="popup.title"
+      :content="popup.content"
+      :type="popup.type"
+      @close-popup="showPopup = false"
     />
   </div>
+  <Auth
+    class="fadein"
+    v-if="showAuthForm"
+    @logged-in="isAuthenticated = true"
+    @toggle-show-auth-form="toggleShowAuthForm()"
+    @show-popup="
+      (npopup) => {
+        showPopup = true;
+        popup = npopup;
+      }
+    "
+  />
+  <!-- <div class="container"> -->
+    <AddCard @add-card="addCard" />
+    <Cards :cards="cards" />
+  <!-- </div> -->
 
   <!-- <div class="add-card">
     <input type="text" name="question">
@@ -30,7 +46,10 @@
 import Header from "@/components/Header.vue";
 import AddCard from "@/components/AddCard.vue";
 import Cards from "@/components/Cards.vue";
-import Authenticate from "@/components/Authenticate.vue";
+import Auth from "@/components/Auth.vue";
+import Popup from "@/components/Popup.vue";
+
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 export default {
   name: "App",
@@ -38,15 +57,29 @@ export default {
   components: {
     Header,
     AddCard,
-    Authenticate,
     Cards,
+    Auth,
+    Popup,
+  },
+
+  created() {
+    let auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.isAuthenticated = true
+      } else {
+        this.isAuthenticated = false
+      }
+    });
   },
 
   data() {
     return {
-      showAuthForm: true,
+      showAuthForm: false,
       isAuthenticated: false,
       cards: [],
+      showPopup: false,
+      popup: {},
     };
   },
 
@@ -62,9 +95,11 @@ export default {
       localStorage.setItem("cards", this.cards);
     },
 
-    closeAuthForm() {
-      this.showAuthForm = false;
-    },
+    logoutUser() {
+      signOut(getAuth())
+      this.popup.title = "Logged out"
+      this.popup.type = "info"
+    }
   },
 };
 </script>
@@ -74,8 +109,18 @@ export default {
 @use '@/scss/_fonts.scss'
 @use '@/scss/_utils.scss'
 
-*
+@include utils.animate(fadein, 500ms, ease)
+@include utils.utils()
+
+#app
   @extend %font-bold
-  background: colors.$bg-dark
-  color: colors.$fg-light
+  background: colors.$bg-light
+  color: colors.$fg-dark
+  display: flex
+  height: 100%
+  padding: 0
+  margin: 0
+  // justify-content: center
+  // align-items: center
+  flex-direction: column
 </style>
