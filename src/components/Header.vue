@@ -16,12 +16,19 @@
           </button>
         </li>
         <li v-if="isAuthenticated">
-          <DropdownComponent
-            class="link"
-            :dropdownData="userDropdown"
-            @logout-user="$emit('logoutUser')"
-          />
-          <!-- <button class="link user-dropdown"><img :src="require('@/assets/icons/person.svg')" alt=""></button> -->
+          <DropdownComponent class="link" @logout-user="$emit('logoutUser')">
+            <template v-slot:ddImage>
+              <img
+                :src="require('@/assets/icons/person.svg')"
+                alt="User icon"
+              />
+            </template>
+            <template v-slot:ddContent>
+              <div class="option">
+                <button class="link" @click="$emit('logoutUser')">SignOut</button>
+              </div>
+            </template>
+          </DropdownComponent>
         </li>
       </div>
     </ul>
@@ -40,22 +47,6 @@ export default {
 
   props: {
     isAuthenticated: Boolean,
-  },
-
-  data() {
-    return {
-      userDropdown: {
-        image: true,
-        imagePath: require("../assets/icons/person.svg"),
-        imageAlt: "User icon",
-        options: [
-          {
-            content: "logout",
-            emit: "logoutUser",
-          },
-        ],
-      },
-    };
   },
 };
 </script>
@@ -81,7 +72,7 @@ li .link
   padding: 14px 16px
   text-decoration: none
   border: none
-  background: #0000 
+  background: #0000
   transition: .2s
   height: 100%
   bottom: 0

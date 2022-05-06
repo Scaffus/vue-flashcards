@@ -3,16 +3,13 @@
     <div class="form-content center">
       <!-- Switch between login and register form (0 & 1)  -->
       <div class="form-tab">
-        <button :class="!mode ? 'mode active' : 'mode'" @click="mode = true">
+        <button class="close" @click="$emit('toggleShowAuthForm')">×</button>
+        <button :class="!mode ? 'tab active' : 'tab'" @click="mode = true">
           Login
         </button>
-        <button
-          :class="mode ? 'mode active' : 'mode'"
-          @click="mode = false"
-        >
+        <button :class="mode ? 'tab active' : 'tab'" @click="mode = false">
           Register
         </button>
-        <!-- <button class="close" @click="$emit('toggleShowAuthForm')">×</button> -->
       </div>
       <div class="form-body">
         <input type="text" v-model="email" placeholder="Email" />
@@ -121,23 +118,23 @@ button
   background: white
 
 .form-tab
-  overflow: hidden
   display: flex
+  position: relative
   width: 100%
   background: rgba(0, 0, 0, 0.1)
-  border-radius: 10px 10px 0px 0px 
-  button
+  border-radius: 10px 10px 0px 0px
+  button.tab
     float: left
     border: none
     outline: none
+    border-radius: 10px 10px 0px 0px
     cursor: pointer
     padding: 14px 16px
     transition: .3s
     background: white
     margin: 0
     flex-grow: 1
-    border-radius: 10px 10px 0px 0px
-  .active
+  .tab.active
     background: rgba(0, 0, 0, 0)
 
 
@@ -151,7 +148,7 @@ button
   width: 100%
   height: 100%
   background: rgba(0, 0, 0, 0.3)
-  
+
 
 .form-content
   z-index: 0
@@ -181,16 +178,13 @@ input
   border-bottom: 2px solid black
   padding: .8em
   margin: .8em
-  // width: 80%
   font-size: calculate(fonts.$font-size * 2)
 
-.close
-  z-index: -1
-  width: 100%
-  height: 100%
-  left: 0
-  right: 0
+button.close
+  position: absolute
   border: none
-  background: rgba(0, 0, 0, 0)
   cursor: pointer
+  right: -3.2em
+  top: -3.2em
+  padding: .7em .9em
 </style>

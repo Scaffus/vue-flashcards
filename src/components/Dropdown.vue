@@ -1,23 +1,15 @@
 <template>
   <div class="dropdown">
     <button class="select" @click="showDropdown = !showDropdown">
-      <img
-        v-if="dropdownData.image"
-        :src="dropdownData.imagePath"
-        :alt="dropdownData.imageAlt"
-      />
+      <slot name="ddImage">
+
+      </slot>
     </button>
     <transition name="fade">
       <div v-if="showDropdown" class="dropdown-menu">
-        <div
-          v-for="option in dropdownData.options"
-          :key="option"
-          class="options"
-        >
-          <button class="option" @click="$emit(option.emit)">
-            {{ option.content }}
-          </button>
-        </div>
+        <slot name="ddContent">
+
+        </slot>
       </div>
     </transition>
   </div>
