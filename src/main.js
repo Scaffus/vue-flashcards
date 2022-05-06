@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import firebase from 'firebase/compat/app'
+import './assets/tailwind.css'
 
 const firebaseConfig = {
     apiKey: "AIzaSyAOI_mm3Rv05ats9Qh-OBwdfF8SAWat414",

@@ -19,39 +19,33 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@use '@/scss/_colors.scss'
-// @use '@/scss/_utils.scss'
+// @use '@/scss/_colors.scss'
 
-// @include utils.animate(fadein, 500ms, ease)
+// .popup
+//     top: 5%
+//     position: fixed
+//     width: 80%
+//     padding: 0em .7em
+//     border-radius: 10px
+//     background: white
+//     z-index: 1
 
-.popup
-    top: 5%
-    position: fixed
-    width: 80%
-    padding: 0em .7em
-    border-radius: 10px
-    background: white
-    z-index: 1
+//     button
+//         margin-left: auto
+//         border: 0
+//         zoom: 150%
+//         background: white
+//         cursor: pointer
 
-    button
-        margin-left: auto
-        border: 0
-        zoom: 150%
-        background: white
-        cursor: pointer
+// .warning
+//     border: 2px solid colors.$warning
 
-.warning
-    border: 2px solid colors.$warning
+// .info
+//     border: 2px solid colors.$info
 
-.info
-    border: 2px solid colors.$info
+// .success
+//     border: 2px solid colors.$success
 
-.success
-    border: 2px solid colors.$success
-
-.danger
-    border: 2px solid colors.$danger
-
-
-
+// .danger
+//     border: 2px solid colors.$danger
 </style>

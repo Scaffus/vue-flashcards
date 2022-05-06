@@ -51,6 +51,8 @@ import Popup from "@/components/Popup.vue";
 
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
+import '@assets/tailwind.css'
+
 export default {
   name: "App",
 
@@ -105,22 +107,22 @@ export default {
 </script>
 
 <style lang="sass">
-@use '@/scss/_colors.scss'
-@use '@/scss/_fonts.scss'
-@use '@/scss/_utils.scss'
+// @use '@/scss/_colors.scss'
+// @use '@/scss/_fonts.scss'
+// @use '@/scss/_utils.scss'
 
-@include utils.animate(fadein, 500ms, ease)
-@include utils.utils()
+// @include utils.animate(fadein, 500ms, ease)
+// @include utils.utils()
 
-#app
-  @extend %font-bold
-  background: colors.$bg-light
-  color: colors.$fg-dark
-  display: flex
-  height: 100%
-  padding: 0
-  margin: 0
-  // justify-content: center
-  // align-items: center
-  flex-direction: column
+// #app
+//   @extend %font-bold
+//   background: colors.$bg-light
+//   color: colors.$fg-dark
+//   display: flex
+//   height: 100%
+//   padding: 0
+//   margin: 0
+//   // justify-content: center
+//   // align-items: center
+//   flex-direction: column
 </style>
