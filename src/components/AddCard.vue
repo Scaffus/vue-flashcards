@@ -54,27 +54,27 @@ export default {
 
 <style lang="sass" scoped>
 
-.add-card
-  max-width: 700px 
-  margin: 30px auto
-  overflow: auto
-  min-height: 300px
-  border: 1px solid steelblue
-  padding: 30px
-  border-radius: 5px
-  overflow: hidden
+// .add-card
+//   max-width: 700px 
+//   margin: 30px auto
+//   overflow: auto
+//   min-height: 300px
+//   border: 1px solid steelblue
+//   padding: 30px
+//   border-radius: 5px
+//   overflow: hidden
 
-  label
-    display: block
+//   label
+//     display: block
     
-  input
-    width: 100%
-    height: 40px
-    margin: 5px
-    padding: 3px 7px
-    font-size: 17px
+//   input
+//     width: 100%
+//     height: 40px
+//     margin: 5px
+//     padding: 3px 7px
+//     font-size: 17px
 
-  button
-    margin-top: 2em
+//   button
+//     margin-top: 2em
 
 </style>
